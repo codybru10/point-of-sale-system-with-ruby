@@ -1,0 +1,21 @@
+<h3>Here are a list of products in your system:</h3>
+
+<% if @products.any? %>
+  <ul>
+    <% @products.each() do |product| %>
+      <li><a href="/product/<%= product.id %>"><%= product.name %></a></li>
+  </ul>
+  <% end %>
+<% else %>
+    <p>There are no products in your system yet</p>
+<% end %>
+
+<h3>Add Products Below:</h3>
+
+<form action="/products" method="post">
+  <label for="name">Name of Product</label>
+  <input type="text" id="name" name="name">
+  <label for="price">Price of Product</label>
+  <input type="text" id="price" name="price">
+  <button type="submit" class="btn btn-primary">Add Product</button>
+</form>
