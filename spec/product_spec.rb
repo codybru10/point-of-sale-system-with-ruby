@@ -33,4 +33,15 @@ describe(Product) do
       expect(purchase2.total()).to(eq(0))
     end
   end
+
+  describe('#subtract_cost') do
+    it('subtracts cost of deleted products') do
+      purchase1 = Purchase.create({:total => 0, :purchase_date => '12-11-2016'})
+      product1 = Product.create({:name => 'Old Chair', :price => 12.10})
+      product1.update({:purchase_id => purcha.id()})
+      expect(purchase1.total()).to(eq(12.1))
+    end
+  end
+
+
 end

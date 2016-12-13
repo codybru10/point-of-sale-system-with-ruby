@@ -42,3 +42,42 @@ delete('/product/:id') do
   @products = Product.all
   erb(:products)
 end
+
+get('/purchases')do
+  @products = Product.all
+  erb(:purchases)
+end
+
+get('/purchase/:id') do
+  @purchase = Purchase.find(params.fetch('id'))
+  @products = @purchase.products()
+  erb(:purchase)
+end
+
+post('/purchase') do
+  @purchase = Purchase.create({:total => 0, :purchase_date => params.fetch('date')})
+  @checked = params.fetch('product')
+  @checked.each do |each|
+    product = Product.find(each.to_i)
+    product.update({:purchase_id => @purchase.id(), :purchased? => true})
+  end
+  @purchase.total_cost()
+  @purchase.save()
+  @products = @purchase.products()
+  erb(:purchase)
+end
+
+get('/purchases/all') do
+  @purchases = Purchase.all()
+  erb(:all_purchases)
+end
+
+get('/clear')do
+  Product.all().each do |product|
+    product.destroy()
+  end
+  Purchase.all().each do |purchase|
+    purchase.destroy()
+  end
+  erb(:index)
+end

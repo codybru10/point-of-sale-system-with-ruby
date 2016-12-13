@@ -4,8 +4,8 @@
   <ul>
     <% @products.each() do |product| %>
       <li><a href="/product/<%= product.id %>"><%= product.name %></a></li>
-  </ul>
   <% end %>
+</ul>
 <% else %>
     <p>There are no products in your system yet</p>
 <% end %>
@@ -19,3 +19,6 @@
   <input type="text" id="price" name="price">
   <button type="submit" class="btn btn-primary">Add Product</button>
 </form>
+
+<p><a href="/">Home</a></p>
+<p><a href="/purchases/all">View Purchase History</a></p>

@@ -1,0 +1,16 @@
+<h1>Here is your purchase</h1>
+
+<% if @products.any? %>
+  <ul>
+    <% @products.each() do |product| %>
+      <li><%= product.name %> $<%= product.price %></li>
+  <% end %>
+</ul>
+<% else %>
+    <p>There are no products in your system yet</p>
+<% end %>
+
+<h3>Total: <%= @purchase.total_cost() %></h3>
+
+<p><a href="/">Home</a></p>
+<p><a href="/purchases">Back</a></p>

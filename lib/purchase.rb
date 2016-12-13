@@ -3,7 +3,7 @@ class Purchase < ActiveRecord::Base
   after_touch(:total_cost)
   before_destroy(:subtract_cost)
 
-  private
+  
     define_method(:total_cost) do
       purchase_price = 0
       purchases_items = self.products()

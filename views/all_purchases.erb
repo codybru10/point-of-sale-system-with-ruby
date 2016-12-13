@@ -1,0 +1,19 @@
+<h1>Here is you purchase history</h1>
+
+<% if @purchases.any? %>
+  <ul>
+    <% @total = 0 %>
+    <% @purchases.each() do |purchase| %>
+      <li><a href='/purchase/<%= purchase.id %>'><%= purchase.id %> <%= purchase.purchase_date %> $<%= purchase.total %></a></li>
+      <% @total += purchase.total %>
+  <% end %>
+</ul>
+<% else %>
+    <p>There are no purchases in your system yet</p>
+<% end %>
+
+<h3>Total: $<%= @total  %></h3>
+
+<p><a href="/">Home</a></p>
+<p><a href="#">Select Date Range</a></p>
+<p><a href="/purchases">Back</a></p>

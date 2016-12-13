@@ -1,0 +1,22 @@
+<h3>Here are a list of products in your system:</h3>
+
+<% if @products.any? %>
+  <form action="/purchase" method="post">
+    <% i =1  %>
+    <% @products.each() do |product| %>
+    <% if product.purchased? %>
+    <% else %>
+      <input type="checkbox" name="product[]" value="<%= product.id %>"> <%= product.name %> $<%= product.price %><br>
+  <% i += 1 %>
+    <% end %>
+  <% end %>
+  <br>
+  <label for="date">Enter the purchase date</label>
+  <input type="date" name="date"> <br>
+  <button class="btn-primary btn" type="submit">Create Purchase</button>
+</form>
+<% else %>
+    <p>There are no products in your system yet</p>
+<% end %>
+<br>
+<p><a href="/">Home</a></p>
