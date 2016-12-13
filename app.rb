@@ -5,6 +5,7 @@ also_reload('/lib/**/*.rb')
 require('./lib/purchase')
 require('./lib/product')
 require('pg')
+require('pry')
 
 get('/') do
   erb(:index)
@@ -69,6 +70,13 @@ end
 
 get('/purchases/all') do
   @purchases = Purchase.all()
+  erb(:all_purchases)
+end
+
+post('/purchase_filter') do
+  start_date = params.fetch('start_date')
+  end_date = params.fetch('end_date')
+  @purchases = Purchase.between(start_date, end_date)
   erb(:all_purchases)
 end
 

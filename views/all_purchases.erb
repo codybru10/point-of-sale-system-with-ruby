@@ -13,7 +13,15 @@
 <% end %>
 
 <h3>Total: $<%= @total  %></h3>
+<hr>
+<h3>Filter:</h3>
+<form action="/purchase_filter" method="post">
+  <label for="start_date">Enter Start Date</label>
+  <input type="date" id="start_date" name="start_date">
+  <label for="end_date">Enter End Date</label>
+  <input type="date" id="end_date" name="end_date">
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
 <p><a href="/">Home</a></p>
-<p><a href="#">Select Date Range</a></p>
 <p><a href="/purchases">Back</a></p>
