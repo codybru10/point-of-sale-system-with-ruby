@@ -33,4 +33,10 @@ describe(Product) do
       expect(purchase2.total()).to(eq(0))
     end
   end
+
+  it("validates presence of description") do
+    product = Product.new({:name => "Cody", :price => 12})
+    product.update({:name => "", :price => 12})
+    expect(product.save()).to(eq(false))
+  end
 end

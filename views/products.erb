@@ -3,7 +3,9 @@
 <% if @products.any? %>
   <ul>
     <% @products.each() do |product| %>
-      <li><a href="/product/<%= product.id %>"><%= product.name %></a></li>
+      <li><a href="/product/<%= product.id %>"><%= product.name %> <%= product.purchased?() %>
+
+      </a></li>
   <% end %>
 </ul>
 <% else %>

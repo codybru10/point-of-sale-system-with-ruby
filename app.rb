@@ -19,7 +19,7 @@ end
 post('/products') do
   name = params.fetch('name')
   price = params.fetch('price').to_f
-  Product.create({:name => name, :price => price})
+  Product.new({:name => name, :price => price})
   @products = Product.all()
   erb(:products)
 end
@@ -34,7 +34,11 @@ patch('/product/:id') do
   name = params.fetch('name')
   price = params.fetch('price').to_f
   @product.update({:name => name, :price => price})
-  erb(:product)
+  if @product.save()
+    erb(:product)
+  else
+    erb(:error)
+  end
 end
 
 delete('/product/:id') do
